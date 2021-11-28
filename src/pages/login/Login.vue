@@ -11,9 +11,7 @@
         v-model="credentials.password"
         placeholder="Contraseña"
       ></o-input>
-      <router-link to="/register">
-        ¿Olvidaste tu Apple ID o la contraseña ?</router-link
-      >
+      <a>¿Olvidaste tu Apple ID o la contraseña?</a>
       <o-button type="submit" @click="login">Enviar</o-button>
     </form>
   </div>
