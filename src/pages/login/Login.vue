@@ -1,18 +1,16 @@
 <template>
   <div class="container view">
     <form class="login" @submit="login">
+      <img src="/logo.png" />
       <h1>Acceder</h1>
       <h2>Ir a Storytelling App</h2>
+      <h2>¿Cómo te llamas?</h2>
+
       <o-input
-        v-model="credentials.username"
-        placeholder="Correo electrònico"
+        v-model="credentials.name"
+        placeholder="Ingresar Nombre"
       ></o-input>
-      <o-input
-        v-model="credentials.password"
-        placeholder="Contraseña"
-      ></o-input>
-      <a>¿Olvidaste tu Apple ID o la contraseña?</a>
-      <o-button type="submit" @click="login">Enviar</o-button>
+      <o-button type="submit" @click="login">Registrarse</o-button>
     </form>
   </div>
 </template>
@@ -22,11 +20,11 @@ import { useRouter } from "vue-router";
 export default {
   setup() {
     const router = useRouter();
-    const credentials = reactive({ username: "", password: "" });
+    const credentials = reactive({ name: "" });
 
     const login = async (e) => {
       e.preventDefault();
-      router.push({ name: "proyects" });
+      router.push({ name: "home" });
     };
     return {
       credentials,

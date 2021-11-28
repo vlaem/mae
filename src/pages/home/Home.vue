@@ -2,16 +2,15 @@
   <div>
     <div><h1>Proyectos Marketeros</h1></div>
     <o-tabs v-model="activeTab">
-      <o-tab-item value="0" label="Todos"> Todos </o-tab-item>
-      <o-tab-item value="1" label="En Curso"> En Curso </o-tab-item>
-      <o-tab-item value="2" label="Hechos"> Hechos </o-tab-item>
-      <o-tab-item value="3" label="Comunidad" disabled> Comunidad </o-tab-item>
+      <o-tab-item value="0" label="Mis Campañas"><my-campaigns /> </o-tab-item>
+      <o-tab-item value="1" label="Comunidad"> Comunidad </o-tab-item>
     </o-tabs>
   </div>
 </template>
 <script>
 import { reactive, ref } from "vue";
 import { useRouter } from "vue-router";
+import MyCampaigns from "src/pages/home/MyCampaigns.vue";
 
 export default {
   setup() {
@@ -20,6 +19,9 @@ export default {
     return {
       activeTab,
     };
+  },
+  components: {
+    MyCampaigns,
   },
 };
 </script>
