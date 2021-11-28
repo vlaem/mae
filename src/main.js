@@ -1,4 +1,12 @@
+import "modern-normalize/modern-normalize.css"
+import './styles/index.css'
 import { createApp } from 'vue'
+import oruga from "./oruga"
+import router from './router'
 import App from './App.vue'
 
-createApp(App).mount('#app')
+const app = createApp(App)
+
+app.use(oruga)
+app.use(router)
+app.mount('#app')
