@@ -10,7 +10,8 @@ const routes = [
     { path: '/inicio', name: "home", component: Home },
     { path: '/camp/nueva', name: "new-campaign", component: NewCampaign },
     { path: '/camp/:id', name: "campaign", component: Campaign, props: true },
-    { path: '/camp/:campaignId/content/:id', name: "new-content", component: NewContent, props: true },
+    { path: '/camp/:campaignId/content/new', name: "new-content", component: NewContent, props: true },
+    { path: '/camp/:campaignId/content/:id', name: "content", component: NewContent, props: true },
 ]
 
 export default routes
