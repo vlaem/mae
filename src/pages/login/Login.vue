@@ -10,7 +10,7 @@
         v-model="credentials.name"
         placeholder="Ingresar Nombre"
       ></o-input>
-      <o-button type="submit" @click="login">Registrarse</o-button>
+      <o-button type="submit" @click="login">Registrarse</o-button>      
     </form>
   </div>
 </template>
