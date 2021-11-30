@@ -5,11 +5,18 @@
   </div>
 </template>
 <script>
+import { useRouter } from "vue-router";
 export default {
   props: ["content"],
-  setup() {
+  setup(props) {
+    const router = useRouter();
     const viewContent = () => {
-        v
+      router.push({
+        name: "content",
+        params: {
+          id: props.content.id,
+        },
+      });
     };
 
     return {

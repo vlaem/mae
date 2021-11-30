@@ -5,6 +5,7 @@ import Campaign from "src/pages/campaigns/Campaign.vue"
 import NewCampaignContent from "src/pages/campaigns/NewContent.vue"
 import CampaignContent from "src/pages/campaigns/Content.vue"
 import CampaignContentPreview from "src/pages/campaigns/ContentPreview.vue"
+import Content from "src/pages/content/Content.vue"
 
 
 const routes = [
@@ -16,6 +17,7 @@ const routes = [
     { path: '/camp/:campaignId/content/new', name: "campaign-new-content", component: NewCampaignContent, props: true },
     { path: '/camp/:campaignId/content/:id', name: "campaign-content", component: CampaignContent, props: true },
     { path: '/camp/:campaignId/content/:id/preview', name: "campaign-content-preview", component: CampaignContentPreview, props: true },
+    { path: '/content/:id', name: "content", component: Content, props: true },
 ]
 
 export default routes

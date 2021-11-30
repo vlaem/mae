@@ -40,7 +40,7 @@ export const useStore = defineStore('campaigns', {
             campaignNextId++
             return newCampaing
         },
-        addContent(campaignId, { app, type, text, file, name }) {
+        addContent(campaignId, { app, type, text, file, title }) {
             console.log("add content", campaignId)
             const newContent = {
                 id: contentNextId,
@@ -48,7 +48,7 @@ export const useStore = defineStore('campaigns', {
                 type,
                 text,
                 file,
-                name,
+                title,
             }
             const campaign = this.getCampaignById(campaignId)
             campaign.content.push(newContent)

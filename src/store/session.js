@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-export const useStore = defineStore('campaigns', {
+export const useStore = defineStore('session', {
     state: () => {
         return {
             user: null,

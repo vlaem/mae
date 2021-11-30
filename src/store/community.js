@@ -1,34 +1,51 @@
 import { defineStore } from 'pinia'
 
-
-// useStore could be anything like useUser, useCart
-// the first argument is a unique id of the store across your application
-export const useStore = defineStore('campaigns', {
+const contentNextId = 1
+const messageNextId = 2
+export const useStore = defineStore('community', {
     state: () => {
         return {
-            contents: [
+            content: [
                 {
                     id: 1,
-                    name: 'pizza 1',
+                    title: 'pizza americana',
                     app: 'instagram',
                     text: 'Nueva promocion!',
                     type: 'ad',
-                    file: '/pìza1.jpg',
+                    file: '/pizza1.jpg',
+                    messages: [{
+                        id: 1,
+                        text: 'Esta disponible todos los dias?',
+                    }],
                 },
                 {
                     id: 2,
-                    name: 'pizza 2',
+                    title: 'pizza pepperonni',
                     app: 'instagram',
                     text: 'Nueva promocion!',
                     type: 'ad',
-                    file: '/pìza2.jpg',
+                    file: '/pizza2.jpg',
+                    messages: [],
                 },
             ]
         }
     },
     getters: {
         getContentById: (state) => {
-            return (id) => state.contents.find(content => content.id == id)
+            return (id) => state.content.find(content => content.id == id)
         }
     },
+    actions: {
+        addCampaign({ name, launchDate }) {
+            const newCampaing = {
+                id: campaignNextId,
+                name,
+                launchDate
+            }
+            this.campaigns.push(newCampaing)
+            campaignNextId++
+            return newCampaing
+        },
+    }
 })
+

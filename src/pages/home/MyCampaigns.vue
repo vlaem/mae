@@ -17,7 +17,6 @@ import NewCampaign from "./my-campaigns/NewCampaign.vue";
 export default {
   setup() {
     const store = useStore();
-
     return {
       store,
     };

@@ -60,7 +60,7 @@ export default {
     const store = useStore();
     const campaign = store.getCampaignById(props.campaignId);
     const newContent = reactive({
-      name: "",
+      title: "",
       app: "instagram",
       type: null,
       text: "",
@@ -81,7 +81,7 @@ export default {
 
     const save = () => {
       const imageUrl = URL.createObjectURL(newContent.file);
-      console.log("imageUrl", imageUrl);
+
       const content = store.addContent(props.campaignId, {
         ...newContent,
         file: imageUrl,
