@@ -10,20 +10,23 @@
         v-model="credentials.name"
         placeholder="Ingresar Nombre"
       ></o-input>
-      <o-button type="submit" @click="login">Registrarse</o-button>      
+      <o-button type="submit" @click="login">Ingresar</o-button>
     </form>
   </div>
 </template>
 <script>
+import { useStore } from "src/store/session";
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
 export default {
   setup() {
     const router = useRouter();
+    const store = useStore();
     const credentials = reactive({ name: "" });
 
     const login = async (e) => {
       e.preventDefault();
+      store.setUser(credentials.name);
       router.push({ name: "home" });
     };
     return {

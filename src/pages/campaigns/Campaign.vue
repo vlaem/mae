@@ -16,12 +16,19 @@
     </div>
     <div>
       <o-button variant="primary" @click="newContent">Nuevo Contenido</o-button>
+      <content
+        v-for="content in campaign.content"
+        :key="content.id"
+        :content="content"
+      />
     </div>
   </div>
 </template>
 <script>
 import { useStore } from "src/store/campaigns";
 import { useRouter } from "vue-router";
+import Content from "./campaign/Content.vue";
+
 export default {
   props: ["id"],
   setup(props) {
@@ -31,7 +38,7 @@ export default {
     const campaign = { ...storeCampaign };
 
     const newContent = () => {
-      router.push({ name: "new-content", params: { campaignId: props.id } });
+      router.push({ name: "campaign-new-content", params: { campaignId: props.id } });
     };
 
     return {
@@ -39,6 +46,9 @@ export default {
       campaign,
       newContent,
     };
+  },
+  components: {
+    Content,
   },
 };
 </script>

@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 
-let campaignNextId = 3
-let contentNextId = 5
+let campaignNextId = 2
+let contentNextId = 1
 
 // useStore could be anything like useUser, useCart
 // the first argument is a unique id of the store across your application
@@ -11,24 +11,7 @@ export const useStore = defineStore('campaigns', {
             campaigns: [
                 {
                     id: 1,
-                    name: 'Campaña 1',
-                    launchDate: new Date(),
-                    content: [
-                        {
-                            id: 1,
-                            app: 'instagram',
-                            type: 'pic'
-                        },
-                        {
-                            id: 2,
-                            app: 'instagram',
-                            type: 'ad'
-                        },
-                    ]
-                },
-                {
-                    id: 2,
-                    name: 'Campaña 2',
+                    name: 'Campaña sin contenido',
                     launchDate: new Date(),
                     content: []
                 },
@@ -57,7 +40,7 @@ export const useStore = defineStore('campaigns', {
             campaignNextId++
             return newCampaing
         },
-        addContent(campaignId, { app, type, text, file }) {
+        addContent(campaignId, { app, type, text, file, name }) {
             console.log("add content", campaignId)
             const newContent = {
                 id: contentNextId,
@@ -65,6 +48,7 @@ export const useStore = defineStore('campaigns', {
                 type,
                 text,
                 file,
+                name,
             }
             const campaign = this.getCampaignById(campaignId)
             campaign.content.push(newContent)
