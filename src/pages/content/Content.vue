@@ -13,19 +13,36 @@
         <div>- {{ message.name }}</div>
       </div>
     </div>
+    <div class="content-add-message">
+      <o-input v-model="newMessage" placeholder="Escribe un mensaje" />
+      <o-button @click="addMessage" :disabled="!newMessage">Enviar</o-button>
+    </div>
   </div>
 </template>
 <script>
+import { ref } from "vue";
 import { useStore } from "src/store/community";
+import { useStore as useSessionStore } from "src/store/session";
+
 export default {
   props: ["id"],
   setup(props) {
     const store = useStore();
-
+    const sessionStore = useSessionStore();
     const content = store.getContentById(props.id);
+    const newMessage = ref("");
+    const addMessage = () => {
+      store.addMessage(props.id, {
+        message: newMessage.value,
+        username: sessionStore.user,
+      });
+      newMessage.value = "";
+    };
 
     return {
+      newMessage,
       content,
+      addMessage,
     };
   },
 };
@@ -38,7 +55,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 0.75rem;  
+  gap: 0.75rem;
   border-radius: 10px;
 }
 

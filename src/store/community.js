@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 
-const contentNextId = 1
-const messageNextId = 2
+let contentNextId = 1
+let messageNextId = 2
 export const useStore = defineStore('community', {
     state: () => {
         return {
@@ -37,15 +37,18 @@ export const useStore = defineStore('community', {
         }
     },
     actions: {
-        addCampaign({ name, launchDate }) {
-            const newCampaing = {
-                id: campaignNextId,
-                name,
-                launchDate
+        addMessage(contentId, { message, username }) {
+            const content = this.getContentById(contentId)
+            const newMessage = {
+                id: messageNextId++,
+                text: message,
+                name: username,
+
             }
-            this.campaigns.push(newCampaing)
-            campaignNextId++
-            return newCampaing
+            content.messages.push(newMessage)
+
+            messageNextId++
+            return newMessage
         },
     }
 })
