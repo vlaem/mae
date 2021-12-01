@@ -16,6 +16,7 @@ export const useStore = defineStore('community', {
                     messages: [{
                         id: 1,
                         text: 'Esta disponible todos los dias?',
+                        name: 'Jack',
                     }],
                 },
                 {
