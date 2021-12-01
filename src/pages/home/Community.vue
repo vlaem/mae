@@ -1,13 +1,15 @@
 <template>
-  <div>
-    <o-input
-      placeholder="Search..."
-      type="search"
-      icon="search"
-      v-model="search"
-    >
-    </o-input>    
-    <div>
+  <div class="community">
+    <div class="content-search">
+      <o-input
+        placeholder="Encuentra inspiración"
+        type="search"
+        icon="search"
+        v-model="search"
+      >
+      </o-input>
+    </div>
+    <div class="content-grid">
       <content
         v-for="content of filteredContent"
         :key="content.id"
@@ -45,3 +47,19 @@ export default {
   },
 };
 </script>
+<style scoped>
+.community {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-gap: 20px;
+  justify-items: center;
+  align-items: center;
+}
+</style>

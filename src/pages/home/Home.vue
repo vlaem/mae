@@ -1,9 +1,11 @@
 <template>
-  <div>
+  <div class="container">
     <div><h1>Proyectos Marketeros</h1></div>
     <o-tabs v-model="activeTab">
-      <o-tab-item value="0" label="Mis Campañas"><my-campaigns /> </o-tab-item>
-      <o-tab-item value="1" label="Comunidad"> <community /> </o-tab-item>
+      <o-tab-item value="0" label="Mis Proyectos"><my-campaigns /> </o-tab-item>
+      <o-tab-item value="1" label="Comunidad Creativa">
+        <community />
+      </o-tab-item>
     </o-tabs>
   </div>
 </template>
@@ -27,3 +29,5 @@ export default {
   },
 };
 </script>
+<style scoped>
+</style>

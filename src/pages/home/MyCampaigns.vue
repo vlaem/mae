@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="my-campaigns">
     <campaign
       v-for="campaign in store.campaigns"
       :key="campaign.id"
@@ -27,3 +27,10 @@ export default {
   },
 };
 </script>
+<style scoped>
+.my-campaigns {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
+}
+</style>

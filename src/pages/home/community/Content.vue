@@ -1,7 +1,7 @@
 <template>
   <div class="content" @click="viewContent">
-    <img :src="content.file" />
-    <p>{{ content.title }}</p>
+    <img class="content-image" :src="content.file" />
+    <span>{{ content.title }}</span>
   </div>
 </template>
 <script>
@@ -29,5 +29,16 @@ export default {
 .content {
   border: 1px solid #ccc;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 10px;
+}
+.content-image {
+  max-width: 145px;
+  max-height: 145px;
 }
 </style>
