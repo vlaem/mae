@@ -1,6 +1,7 @@
 <template>
   <div class="content">
-    <div>{{ content.name }}</div>
+    <div>{{ content.title }}</div>
+    <div>{{ content.app }}</div>
   </div>
 </template>
 <script>
@@ -17,5 +18,6 @@ export default {
 <style scoped>
 .content {
   border: 1px solid #ccc;
+  padding: 0.75rem;
 }
 </style>

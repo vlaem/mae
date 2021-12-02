@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div><h1>Campaña</h1></div>
-       <div class="campaign">
+    <div class="campaign">
       <o-input
         placeholder="Nombre Campaña"
         v-model="campaign.name"

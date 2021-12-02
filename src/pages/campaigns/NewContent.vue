@@ -18,7 +18,7 @@
     <div class="content">
       <span>Contenido:</span>
       <o-input
-        v-model="newContent.name"
+        v-model="newContent.title"
         placeholder="Nombre de publicaciòn"
       ></o-input>
       <div class="content-type">
@@ -87,7 +87,7 @@ export default {
     });
 
     const canSave = computed(() => {
-      return !!newContent.name && !!newContent.type;
+      return !!newContent.title && !!newContent.type;
     });
 
     const save = () => {
