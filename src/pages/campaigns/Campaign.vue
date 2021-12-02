@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="container">
     <div><h1>Campaña</h1></div>
-    <div>
+       <div class="campaign">
       <o-input
         placeholder="Nombre Campaña"
         v-model="campaign.name"
@@ -38,7 +38,10 @@ export default {
     const campaign = { ...storeCampaign };
 
     const newContent = () => {
-      router.push({ name: "campaign-new-content", params: { campaignId: props.id } });
+      router.push({
+        name: "campaign-new-content",
+        params: { campaignId: props.id },
+      });
     };
 
     return {
@@ -52,3 +55,17 @@ export default {
   },
 };
 </script>
+<style scoped>
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+.campaign {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+</style>

@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="container">
     <div><h1>Crear Campaña</h1></div>
-    <div>
+    <div class="campaign">
       <o-input
         placeholder="Nombre Campaña"
         v-model="newCampaign.name"
@@ -11,13 +11,15 @@
         v-model="newCampaign.launchDate"
         locale="es-PE"
       />
-      <o-button type="submit" @click="create">Crear</o-button>
+      <div>
+        <o-button type="submit" @click="create" :disabled="!canCreate">Crear</o-button>
+      </div>
     </div>
   </div>
 </template>
 <script>
 import { useStore } from "src/store/campaigns";
-import { reactive } from "vue";
+import { reactive, computed } from "vue";
 import { useRouter } from "vue-router";
 
 export default {
@@ -41,10 +43,29 @@ export default {
       router.push({ name: "campaign", params: { id: result.id } });
     };
 
+    const canCreate = computed(() => {
+      return newCampaign.name.length > 0 && newCampaign.launchDate;
+    });
+
     return {
+      canCreate,
       newCampaign,
       create,
     };
   },
 };
 </script>
+<style scoped>
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+.campaign {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+</style>

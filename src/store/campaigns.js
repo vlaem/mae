@@ -34,14 +34,15 @@ export const useStore = defineStore('campaigns', {
             const newCampaing = {
                 id: campaignNextId,
                 name,
-                launchDate
+                launchDate,
+                content: []
             }
             this.campaigns.push(newCampaing)
             campaignNextId++
             return newCampaing
         },
         addContent(campaignId, { app, type, text, file, title }) {
-            console.log("add content", campaignId)
+
             const newContent = {
                 id: contentNextId,
                 app,

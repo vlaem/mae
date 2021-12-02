@@ -1,7 +1,8 @@
 <template>
-  <div>
+  <div class="container">
     <div><h1>New Content</h1></div>
-    <div>
+    <div class="campaign">
+      <span>Campaña: </span>
       <o-input
         placeholder="Nombre Campaña"
         v-model="campaign.name"
@@ -15,6 +16,7 @@
       />
     </div>
     <div class="content">
+      <span>Contenido:</span>
       <o-input
         v-model="newContent.name"
         placeholder="Nombre de publicaciòn"
@@ -32,6 +34,7 @@
         v-if="canAddText"
         v-model="newContent.text"
         placeholder="Ingresar publicacion"
+        type="textarea"
       ></o-input>
       <o-upload v-model="newContent.file" v-if="canUploadImage">
         <o-button tag="a" variant="primary">
@@ -39,6 +42,7 @@
           <span>Subir imagen</span>
         </o-button>
       </o-upload>
+      <span>{{ fileName }}</span>
     </div>
     <div class="actions">
       <o-button type="submit" @click="save" :disabled="!canSave"
@@ -65,6 +69,13 @@ export default {
       type: null,
       text: "",
       file: null,
+    });
+
+    const fileName = computed(() => {
+      if (newContent.file) {
+        return newContent.file.name;
+      }
+      return "";
     });
 
     const canAddText = computed(() => {
@@ -100,7 +111,29 @@ export default {
       canAddText,
       canUploadImage,
       canSave,
+      fileName,
     };
   },
 };
 </script>
+<style scoped>
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+.campaign {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+</style>
