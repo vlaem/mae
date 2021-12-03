@@ -3,6 +3,11 @@ import { defineStore } from 'pinia'
 let campaignNextId = 2
 let contentNextId = 1
 
+const truncateString = (string = '', maxLength = 50) =>
+    string.length > maxLength
+        ? `${string.substring(0, maxLength)}…`
+        : string
+
 // useStore could be anything like useUser, useCart
 // the first argument is a unique id of the store across your application
 export const useStore = defineStore('campaigns', {
@@ -50,11 +55,23 @@ export const useStore = defineStore('campaigns', {
                 text,
                 file,
                 title,
+                published: false
             }
             const campaign = this.getCampaignById(campaignId)
             campaign.content.push(newContent)
             contentNextId++
             return newContent
+        },
+        cutContent(campaignId, contentId) {
+            const content = this.getContentById(campaignId, contentId)
+            if (content) {
+                if (content.type === "pic") {
+                    content.text = truncateString(content.text, 149)
+                }
+                if (content.type === "ad") {
+                    content.text = truncateString(content.text, 124)
+                }
+            }
         }
     }
 })

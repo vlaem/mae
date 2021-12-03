@@ -6,21 +6,52 @@
       <img class="content-image" :src="content.file" />
       <p>{{ content.text }}</p>
     </div>
+    <div v-if="offerCutContent">
+      <p>
+        Te sugerimos hacer un texto más corto por que las personas no suelen dar
+        click en leer más.
+      </p>
+      <o-button type="submit" @click="cut">Acortar texto</o-button>
+    </div>
+    <div v-if="!offerCutContent && !content.published">
+      <p>Estas listo para publicar</p>
+      <o-button type="submit" @click="publish">Publicar</o-button>
+    </div>
   </div>
 </template>
 <script>
-import { reactive } from "vue";
+import { reactive, computed } from "vue";
 import { useStore } from "src/store/campaigns";
+import { useStore as useCommunityStore } from "src/store/community";
 
 export default {
   props: ["campaignId", "id"],
   setup(props) {
     const store = useStore();
+    const communityStore = useCommunityStore();
     const content = store.getContentById(props.campaignId, props.id);
-
+    const cut = () => {
+      store.cutContent(props.campaignId, props.id);
+    };
+    const offerCutContent = computed(() => {
+      if (content.type === "pic" && content.text.length > 150) {
+        return true;
+      }
+      if (content.type === "ad" && content.text.length > 125) {
+        return true;
+      }
+      return false;
+    });
+    const publish = () => {
+      communityStore.publishContent(content);
+      content.published = true;
+    };
     return {
       store,
       content,
+      cut,
+      offerCutContent,
+      publish,
     };
   },
 };

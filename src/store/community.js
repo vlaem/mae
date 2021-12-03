@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 
 let contentNextId = 1
-let messageNextId = 2
+let messageNextId = 3
 export const useStore = defineStore('community', {
     state: () => {
         return {
@@ -50,6 +50,14 @@ export const useStore = defineStore('community', {
             messageNextId++
             return newMessage
         },
+        publishContent (content) {
+            this.content.push({
+                ...content,
+                id: messageNextId,
+            })
+
+            messageNextId++;
+        }
     }
 })
 

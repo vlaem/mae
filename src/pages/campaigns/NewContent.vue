@@ -33,9 +33,10 @@
       <o-input
         v-if="canAddText"
         v-model="newContent.text"
-        placeholder="Ingresar publicacion"
+        :placeholder="textPlaceholder"
         type="textarea"
       ></o-input>
+      <span>{{ textCounter }}</span>
       <o-upload v-model="newContent.file" v-if="canUploadImage">
         <o-button tag="a" variant="primary">
           <o-icon icon="upload"></o-icon>
@@ -90,6 +91,26 @@ export default {
       return !!newContent.title && !!newContent.type;
     });
 
+    const textPlaceholder = computed(() => {
+      if (newContent.type === "pic") {
+        return "Admite 1300 caracteres, pero el número ideal es maximo de 150";
+      }
+      if (newContent.type === "ad") {
+        return "Admite 1300 caracteres, pero el número ideal es maximo de 125";
+      }
+      return null;
+    });
+
+    const textCounter = computed(() => {
+      if (newContent.type === "pic") {
+        return newContent.text.length + "/150";
+      }
+      if (newContent.type === "ad") {
+        return newContent.text.length + "/125";
+      }
+      return "";
+    });
+
     const save = () => {
       const imageUrl = URL.createObjectURL(newContent.file);
 
@@ -112,6 +133,8 @@ export default {
       canUploadImage,
       canSave,
       fileName,
+      textPlaceholder,
+      textCounter,
     };
   },
 };
